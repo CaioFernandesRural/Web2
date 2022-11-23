@@ -37,15 +37,33 @@ public class AlunoDo extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		
+		int cont = 0;
+		
 		if (request.getParameter("radio").equals("todos")) {
+			out.println("<h1>Todos: </h1>");
 			for (Aluno i : alunos ) {
-				out.println(
-						"<p>Nome: "+i.getNome()+"</p>"+"<p>Matricula: "+i.getMatricula()+"</p>");
+				out.println("<p>Nome: "+i.getNome()+"</p>"+"<p>Matricula: "+i.getMatricula()+"</p><br>");
 			}
 		} else if (request.getParameter("radio").equals("nome")) {
-			
+			for (Aluno i : alunos ) {
+				if(i.getNome().equals(request.getParameter("nomePesquisa"))) {
+					cont++;
+					out.println("<p>Nome: "+i.getNome()+"</p>"+"<p>Matricula: "+i.getMatricula()+"</p><br>");
+				}
+			}
+			if(cont == 0) {
+				out.println("<h1>Nome não encontrado.</h1>");
+			}
 		} else if (request.getParameter("radio").equals("matricula")) {
-			
+			for (Aluno i : alunos ) {
+				if(i.getNome().equals(request.getParameter("nomePesquisa"))) {
+					cont++;
+					out.println("<p>Nome: "+i.getNome()+"</p>"+"<p>Matricula: "+i.getMatricula()+"</p><br>");
+				}
+			}
+			if(cont == 0) {
+				out.println("<h1>Matrícula não encontrada.</h1>");
+			}
 		}
 	}
 
